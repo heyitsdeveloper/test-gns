@@ -1,0 +1,16 @@
+---
+- name: Telnet to Router
+  hosts: all
+  tasks:
+    - name: Telnet to router and run command
+      expect:
+        command: telnet {{ inventory_hostname }}
+        responses:
+          'Username:': 'cisco'
+          'Password:': 'cisco'
+          'Router>': 'ping 192.168.49.1'
+      register: telnet_output
+
+    - name: Print Telnet output
+      debug:
+        var: telnet_output.stdout_lines
