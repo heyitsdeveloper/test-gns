@@ -1,16 +1,14 @@
 ---
-- name: Telnet to Router
-  hosts: all
+- name: Ping from Router
+  hosts: routers
+  gather_facts: no
   tasks:
-    - name: Telnet to router and run command
-      expect:
-        command: telnet {{ inventory_hostname }}
-        responses:
-          'Username:': 'cisco'
-          'Password:': 'cisco'
-          'Router>': 'ping 192.168.49.1'
-      register: telnet_output
+    - name: Ping 192.168.49.1 from the router
+      ios_command:
+        commands:
+          - ping 192.168.49.1
+      register: ping_output
 
-    - name: Print Telnet output
+    - name: Display ping results
       debug:
-        var: telnet_output.stdout_lines
+        var: ping_output.stdout
