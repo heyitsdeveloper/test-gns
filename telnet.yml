@@ -1,14 +1,13 @@
 ---
-- name: Ping from Router
+- name: Gather facts from Cisco Router
   hosts: routers
   gather_facts: no
+  collections:
+    - cisco.ios
   tasks:
-    - name: Ping 192.168.49.1 from the router
-      ios_command:
-        commands:
-          - ping 192.168.49.1
-      register: ping_output
+    - name: Gather IOS facts
+      ios_facts:
 
-    - name: Display ping results
+    - name: Display gathered facts
       debug:
-        var: ping_output.stdout
+        var: ansible_net_version
