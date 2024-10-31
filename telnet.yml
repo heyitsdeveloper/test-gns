@@ -4,6 +4,6 @@
   gather_facts: no
   tasks:
     - name: Ping the router
-      ios_command:
+      cisco.ios.ios_command:
         commands:
           - ping 8.8.8.8 repeat 4
