@@ -4,6 +4,6 @@
   gather_facts: no
   tasks:
     - name: Ping the router
-      ios_ping:
-        dest: 8.8.8.8
-        count: 4
+      ios_command:
+        commands:
+          - ping 8.8.8.8 repeat 4
