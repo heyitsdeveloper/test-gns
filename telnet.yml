@@ -1,6 +1,6 @@
 ---
 - name: Test Connectivity to GNS3 Router
-  hosts: gns3_router
+  hosts: all
   gather_facts: no
   tasks:
     - name: Ping the router
