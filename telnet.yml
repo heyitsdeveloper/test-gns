@@ -2,8 +2,10 @@
 - name: Test Connectivity to GNS3 Router
   hosts: all
   gather_facts: no
+  collections:
+    - cisco.ios
   tasks:
     - name: Ping the router
-      ios_ping:
-        dest: 8.8.8.8
-        count: 4
+      cisco.ios.ios_command:
+        commands:
+          - ping 8.8.8.8 repeat 4
