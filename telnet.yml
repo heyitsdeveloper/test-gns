@@ -1,13 +1,9 @@
 ---
-- name: Gather facts from Cisco Router
-  hosts: routers
+- name: Test Connectivity to GNS3 Router
+  hosts: gns3_router
   gather_facts: no
-  collections:
-    - cisco.ios
   tasks:
-    - name: Gather IOS facts
-      ios_facts:
-
-    - name: Display gathered facts
-      debug:
-        var: ansible_net_version
+    - name: Ping the router
+      ios_ping:
+        dest: 8.8.8.8
+        count: 4
