@@ -9,3 +9,4 @@
       cisco.ios.ios_command:
         commands:
           - ping 8.8.8.8 repeat 4
+
