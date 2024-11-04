@@ -4,6 +4,9 @@
   gather_facts: no
   tasks:
     - name: Run show ip interface brief
-      ios_command:
-        commands:
-          - show ip interface brief
+      command: ssh cisco@172.18.0.2 "show ip interface brief"
+      register: command_output
+
+    - name: Display command output
+      debug:
+        var: command_output.stdout
