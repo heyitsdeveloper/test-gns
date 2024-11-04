@@ -1,6 +1,9 @@
 ---
-- name: Ping the target host
-  hosts: all
+- name: Show IP Interface Brief
+  hosts: routers
+  gather_facts: no
   tasks:
-    - name: Ping the host
-      ansible.builtin.ping:
+    - name: Run show ip interface brief
+      ios_command:
+        commands:
+          - show ip interface brief
