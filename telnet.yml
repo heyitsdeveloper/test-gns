@@ -1,9 +1,12 @@
----
 - name: Show IP Interface Brief
   hosts: all
   gather_facts: no
   tasks:
     - name: Run show ip interface brief
-      ios_command:
-        commands:
-          - show ip interface brief
+      ansible.builtin.command:
+        cmd: show ip interface brief
+      register: output
+
+    - name: Display output
+      debug:
+        var: output.stdout
