@@ -1,12 +1,6 @@
-- name: Show IP Interface Brief
+---
+- name: Ping the target host
   hosts: all
-  gather_facts: no
   tasks:
-    - name: Run show ip interface brief
-      ansible.builtin.command:
-        cmd: show ip interface brief
-      register: output
-
-    - name: Display output
-      debug:
-        var: output.stdout
+    - name: Ping the host
+      ansible.builtin.ping:
