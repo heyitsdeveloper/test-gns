@@ -7,5 +7,3 @@
       ios_command:
         commands:
           - show ip interface brief
-      become: yes
-      become_method: enable
