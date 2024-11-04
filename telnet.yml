@@ -1,12 +1,11 @@
 ---
-- name: Test Connectivity to GNS3 Router
-  hosts: all
+- name: Show IP Interface Brief
+  hosts: routers
   gather_facts: no
-  collections:
-    - cisco.ios
   tasks:
-    - name: Ping the router
-      cisco.ios.ios_command:
+    - name: Run show ip interface brief
+      ios_command:
         commands:
-          - ping 8.8.8.8 repeat 4
-
+          - show ip interface brief
+      become: yes
+      become_method: enable
