@@ -1,6 +1,6 @@
 ---
 - name: Show IP Interface Brief
-  hosts: myhosts
+  hosts: 172.18.0.2
   gather_facts: no
   tasks:
     - name: Run show ip interface brief
