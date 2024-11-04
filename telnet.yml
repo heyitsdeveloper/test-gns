@@ -1,6 +1,6 @@
 ---
 - name: Show IP Interface Brief
-  hosts: routers
+  hosts: all
   gather_facts: no
   tasks:
     - name: Run show ip interface brief
