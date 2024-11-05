@@ -4,9 +4,7 @@
   gather_facts: no
   tasks:
     - name: Run show ip interface brief
-      command: ssh -o KexAlgorithms=+diffie-hellman-group1-sha1 cisco@192.168.1.1 "show ip interface brief"
-      register: command_output
+      ios_command:
+        commands:
+          - show ip interface brief
 
-    - name: Display command output
-      debug:
-        var: command_output.stdout
