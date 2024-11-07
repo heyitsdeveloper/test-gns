@@ -1,0 +1,14 @@
+---
+- name: Show ARP table on router
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Gather ARP table
+      ios_command:
+        commands:
+          - show arp
+      register: arp_output
+
+    - name: Display ARP table
+      debug:
+        var: arp_output.stdout_lines
