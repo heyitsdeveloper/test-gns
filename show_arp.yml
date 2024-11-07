@@ -1,7 +1,8 @@
 ---
 - name: Show ARP table on router
-  hosts: all
+  hosts: routers
   gather_facts: no
+  connection: network_cli
   tasks:
     - name: Gather ARP table
       ios_command:
