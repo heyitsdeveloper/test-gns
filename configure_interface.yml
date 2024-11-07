@@ -1,0 +1,27 @@
+---
+- name: Configure IP Address on FastEthernet0/1
+  hosts: all
+  gather_facts: no
+  connection: network_cli
+  tasks:
+    - name: Configure IP address on FastEthernet0/1
+      ios_config:
+        lines:
+          - interface FastEthernet0/1
+          - ip address 192.168.1.2 255.255.255.0
+          - no shutdown
+      register: config_output
+ 
+    - name: Verify Configuration
+      ios_command:
+        commands:
+          - show ip interface brief
+      register: verify_output
+ 
+    - name: Print the configuration output
+      debug:
+        var: config_output
+ 
+    - name: Print the verification output
+      debug:
+        var: verify_output
