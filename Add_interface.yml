@@ -1,15 +1,49 @@
 ---
-- name: Configure Cisco Router Interface
+
+- name: Configure FastEthernet0/2 Interface
+
   hosts: all
+
   gather_facts: no
+
   connection: network_cli
+
   tasks:
+
     - name: Configure FastEthernet0/2
+
       ios_config:
+
         lines:
+
           - interface FastEthernet0/2
+
           - ip address 192.168.1.2 255.255.255.0
+
           - no shutdown
-      register: config_result
-      failed_when: config_result.failed
-      changed_when: config_result.changed
+
+      register: config_output
+ 
+    - name: Verify Configuration
+
+      ios_command:
+
+        commands:
+
+          - show ip interface brief
+
+      register: verify_output
+ 
+    - name: Print the configuration output
+
+      debug:
+
+        var: config_output
+ 
+    - name: Print the verification output
+
+      debug:
+
+        var: verify_output
+
+ 
