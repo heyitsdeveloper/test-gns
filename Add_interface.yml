@@ -1,49 +1,27 @@
 ---
-
-- name: Configure FastEthernet0/2 Interface
-
+- name: Configure IP address on interface GigabitEthernet0/1
   hosts: all
-
   gather_facts: no
-
   connection: network_cli
-
   tasks:
-
-    - name: Configure FastEthernet0/2
-
+    - name: Configure IP address on GigabitEthernet0/1
       ios_config:
-
         lines:
-
-          - interface FastEthernet0/2
-
-          - ip address 192.168.1.2 255.255.255.0
-
+          - interface GigabitEthernet0/1
+          - ip address 192.168.1.10 255.255.255.0
           - no shutdown
-
       register: config_output
- 
-    - name: Verify Configuration
 
+    - name: Verify configuration on GigabitEthernet0/1
       ios_command:
-
         commands:
-
-          - show ip interface brief
-
+          - show running-config interface GigabitEthernet0/1
       register: verify_output
- 
+
     - name: Print the configuration output
-
       debug:
-
         var: config_output
- 
+
     - name: Print the verification output
-
       debug:
-
-        var: verify_output
-
- 
+        var: verify_output.stdout_lines
