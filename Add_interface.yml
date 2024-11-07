@@ -1,0 +1,12 @@
+---
+- name: Configure Cisco Router Interface
+  hosts: all
+  gather_facts: no
+  connection: network_cli
+  tasks:
+    - name: Configure FastEthernet0/2
+      ios_config:
+        lines:
+          - interface FastEthernet0/2
+          - ip address 192.168.2.1 255.255.255.0
+          - no shutdown
