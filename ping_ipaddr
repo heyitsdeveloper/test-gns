@@ -1,0 +1,15 @@
+---
+- name: Ping 192.168.1.254 from router
+  hosts: all
+  gather_facts: no
+  connection: network_cli
+  tasks:
+    - name: Ping 192.168.1.254
+      ios_command:
+        commands:
+          - ping 192.168.1.254
+      register: ping_output
+
+    - name: Print the ping output
+      debug:
+        var: ping_output.stdout_lines
