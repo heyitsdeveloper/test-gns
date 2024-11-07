@@ -4,9 +4,25 @@
   gather_facts: no
   connection: network_cli
   tasks:
+    - name: Enter enable mode
+      ios_command:
+        commands:
+          - enable
+          - configure terminal
+      register: enable_output
+
     - name: Configure IP address on FastEthernet0/1
       ios_config:
         lines:
           - interface FastEthernet0/1
           - ip address 192.168.1.10 255.255.255.0
           - no shutdown
+      register: config_output
+
+    - name: Print the enable mode output
+      debug:
+        var: enable_output
+
+    - name: Print the configuration output
+      debug:
+        var: config_output
