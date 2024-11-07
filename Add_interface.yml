@@ -8,7 +8,6 @@
       ios_command:
         commands:
           - enable
-          - configure terminal
       register: enable_output
 
     - name: Configure IP address on FastEthernet0/1
